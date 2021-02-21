@@ -8,6 +8,6 @@ class CandidateSolWrapper constructor(//    private var d:Int = Int.MAX_VALUE;
     var d:Double =0.0;
 
     override fun toString(): String {
-        return "CandidateSolWrapper:{d:$d,candidateSol:$candidateSol}"
+        return "CandidateSolWrapper:{d=$d,candidateSol=$candidateSol}"
     }
 }

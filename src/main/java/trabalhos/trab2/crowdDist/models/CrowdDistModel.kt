@@ -37,6 +37,6 @@ class CrowdDistModel constructor(candidateSolList: List<CandidateSol>) {
     }
 
     override fun toString(): String {
-        return "CrowdDistModel:{$candidateSolWrapperList}"
+        return "CrowdDistModel={$candidateSolWrapperList}"
     }
 }
