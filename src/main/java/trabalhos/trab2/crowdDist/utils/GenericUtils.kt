@@ -17,6 +17,15 @@ class GenericUtils {
             }
             return res
         }
+        fun sortMethodByD(
+            candidateSolWrapperList: List<CandidateSolWrapper>,
+            ):List<CandidateSolWrapper>{
+            var res:List<CandidateSolWrapper> = candidateSolWrapperList.map { el -> el }
+            res = res.sortedBy {
+                it.d
+            }
+            return res
+        }
 
     }
 }

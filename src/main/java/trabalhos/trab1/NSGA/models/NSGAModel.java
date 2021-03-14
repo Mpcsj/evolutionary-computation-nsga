@@ -69,6 +69,14 @@ public class NSGAModel {
         }
         return res;
     }
+
+    public List<CandidateSol>getOrderedPointsByFrontier(){
+        List<CandidateSol>res = new ArrayList<>();
+        for(List<CandidateSol>curr:getPointsByFrontier()){
+            res.addAll(curr);
+        }
+        return res;
+    }
     private void fixFrontiersListSize(int desiredSize){
         if(getFrontiers().size() < desiredSize){
             for(int idx=getFrontiers().size();idx<desiredSize;idx++){

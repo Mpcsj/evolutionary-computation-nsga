@@ -5,6 +5,7 @@ package trabalhos.trab1.models;
 import com.sun.istack.internal.NotNull;
 
 import java.util.Arrays;
+import java.util.List;
 
 public class CandidateSol implements Comparable<CandidateSol> {
     private final double[] points;
@@ -12,6 +13,14 @@ public class CandidateSol implements Comparable<CandidateSol> {
 
     public CandidateSol(String label,double ...points) {
         this.points= points;
+        this.label = label;
+    }
+    public CandidateSol(String label, List<Double> points) {
+        assert points!=null;
+        this.points= new double[points.size()];
+        for(int idx = 0;idx<points.size();idx++){
+            this.points[idx] = points.get(idx);
+        }
         this.label = label;
     }
 

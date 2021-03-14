@@ -3,7 +3,7 @@ package trabalhos.trab2.crowdDist.models
 import trabalhos.common.utils.ValidationUtils
 import trabalhos.trab1.models.CandidateSol
 import trabalhos.trab1.models.InvalidCandidateSolutionException
-
+import trabalhos.trab2.crowdDist.utils.GenericUtils
 class CrowdDistModel constructor(candidateSolList: List<CandidateSol>) {
     val candidateSolWrapperList: List<CandidateSolWrapper> =
         candidateSolList.map { candidateSol -> CandidateSolWrapper(candidateSol) };
@@ -19,6 +19,9 @@ class CrowdDistModel constructor(candidateSolList: List<CandidateSol>) {
         return candidateSolWrapperList.size
     }
 
+    fun getOrderedList():List<CandidateSol>{
+        return GenericUtils.sortMethodByD(candidateSolWrapperList).map { candidateSolWrapper -> candidateSolWrapper.candidateSol }
+    }
 
     fun getMinByObjective(idxObjective:Int):Double{
         var res = candidateSolWrapperList[0].candidateSol.points[idxObjective]
