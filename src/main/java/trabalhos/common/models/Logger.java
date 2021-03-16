@@ -2,16 +2,17 @@ package trabalhos.common.models;
 
 public class Logger {
     private int defaultLogLevel;
-    private String persistFilePath;
-    public Logger (int defaultLogLevel,String persistFilePath){
+    private String persistFilePath,tag;
+    public Logger (String tag,int defaultLogLevel,String persistFilePath){
         this.defaultLogLevel = defaultLogLevel;
         this.persistFilePath = persistFilePath;
+        this.tag = tag;
     }
-    public Logger(int defaultLogLevel){
-        this(defaultLogLevel,null);
+    public Logger(String tag ,int defaultLogLevel){
+        this(tag,defaultLogLevel,null);
     }
-    public Logger(){
-        this(0,null);
+    public Logger(String tag){
+        this(tag,0,null);
     }
     public void showMessage(String message){
         showMessage(message,defaultLogLevel,0);
@@ -28,7 +29,7 @@ public class Logger {
             int showAtLeastLevel,
             boolean persist){
         if(currLogLevel >= showAtLeastLevel){
-            System.out.println(message);
+            System.out.println("["+tag+"] -> "+message);
         }
         if(persist && persistFilePath!=null){
             // TODO: persisto o arquivo no path do file indicado ...

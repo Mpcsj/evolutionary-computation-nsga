@@ -13,19 +13,20 @@ class Trab3:CefetJob {
     override fun run() {
         // declarando constantes do projeto
         val numGenes=7;val numOutputs = 3;
-        val initialPopSize = 20;val numGenerations = 40500
+        val initialPopSize = 20;val numGenerations = 450
         // instanciando objetos necessarios
-        val specimenFactory = SpecimenFactory()
+        val specimenFactory = SpecimenFactory(logLevel = 1)
         val problem:Problem  = BasicProblem(numOutputs)
-        val initialList:List<Specimen> = MutableList(initialPopSize) {
+        val initialPopulation:List<Specimen> = MutableList(initialPopSize) {
             specimenFactory.newSpecimen(numGenes,problem)
         }
+        println("Populacao inicial:$initialPopulation")
         // executando main loop propriamente dito
         val result = MainLoopImpl(
-            initialList,
+            initialPopulation,
             specimenFactory,
-            BlxAlphaStrategy()
-        ).execute(numGenerations,problem,2)
+            BlxAlphaStrategy(specimenFactory,0)
+        ).execute(numGenerations,problem,1)
         println("$TAG::final generation:$result")
     }
 

@@ -7,4 +7,9 @@ interface SpecimenFactoryInterface {
         genesQuantity:Int,
         problem: Problem,
         label:String="Problem-"+Math.random()): Specimen
+
+    fun newSpecimen(
+        genes:List<Double>,
+        problem: Problem,
+        label:String="Problem-"+Math.random()): Specimen
 }
