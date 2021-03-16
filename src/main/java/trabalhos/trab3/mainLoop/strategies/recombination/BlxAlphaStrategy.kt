@@ -9,7 +9,10 @@ import kotlin.math.abs
 
 class BlxAlphaStrategy:RecombinationStrategy {
     val alpha:Double = Random().nextGaussian()
-    override fun recombine(parentA: Specimen, parentB: Specimen, problem: Problem): List<Specimen> {
+    override fun recombine(
+        parentA: Specimen,
+        parentB: Specimen,
+        problem: Problem): List<Specimen> {
         assert(parentA.genes.size == parentB.genes.size)
         val childAGenes = parentA.genes.mapIndexed() { idx,d -> d+alpha*(abs(d - parentB.genes[idx])) }
         val childBGenes = parentB.genes.mapIndexed(){idx,d->d+alpha*(abs(d-parentA.genes[idx]))}

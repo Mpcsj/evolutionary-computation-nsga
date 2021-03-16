@@ -25,8 +25,8 @@ class Trab3:CefetJob {
             initialList,
             specimenFactory,
             BlxAlphaStrategy()
-        ).execute(numGenerations,problem)
-        println("$TAG::result:$result")
+        ).execute(numGenerations,problem,2)
+        println("$TAG::final generation:$result")
     }
 
     override fun getTAG(): String {

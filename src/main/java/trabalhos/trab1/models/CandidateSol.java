@@ -56,7 +56,7 @@ public class CandidateSol implements Comparable<CandidateSol> {
 
     @Override
     public int compareTo(@NotNull CandidateSol candidateSol) {
-        return 0;
+        return dominates(candidateSol)?-1:1;
     }
 
     @Override
