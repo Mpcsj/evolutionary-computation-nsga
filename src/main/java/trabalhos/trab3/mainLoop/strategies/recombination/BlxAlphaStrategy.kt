@@ -10,11 +10,11 @@ import kotlin.collections.ArrayList
 import kotlin.math.abs
 
 class BlxAlphaStrategy(
-    val specimentFactory:SpecimenFactoryInterface,
+    private val specimenFactory:SpecimenFactoryInterface,
     currLogLevel:Int=0):RecombinationStrategy {
     private val TAG = BlxAlphaStrategy::class.java.canonicalName
     private val logger:Logger = Logger(TAG,currLogLevel)
-    val alpha:Double = Random().nextGaussian()
+    private val alpha:Double = Random().nextGaussian()
     override fun recombine(
         parentA: Specimen,
         parentB: Specimen,
@@ -25,8 +25,8 @@ class BlxAlphaStrategy(
         val childAGenes = parentA.genes.mapIndexed() { idx,d -> d+alpha*(abs(d - parentB.genes[idx])) }
         val childBGenes = parentB.genes.mapIndexed(){idx,d->d+alpha*(abs(d-parentA.genes[idx]))}
         return arrayListOf(
-            specimentFactory.newSpecimen(childAGenes ,problem),
-            specimentFactory.newSpecimen(childBGenes ,problem)
+            specimenFactory.newSpecimen(childAGenes ,problem),
+            specimenFactory.newSpecimen(childBGenes ,problem)
         )
     }
 

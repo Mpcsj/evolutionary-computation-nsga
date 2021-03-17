@@ -13,7 +13,7 @@ class Trab3:CefetJob {
     override fun run() {
         // declarando constantes do projeto
         val numGenes=7;val numOutputs = 3;
-        val initialPopSize = 20;val numGenerations = 450
+        val initialPopSize = 20;val numGenerations = 45000
         // instanciando objetos necessarios
         val specimenFactory = SpecimenFactory(logLevel = 1)
         val problem:Problem  = BasicProblem(numOutputs)

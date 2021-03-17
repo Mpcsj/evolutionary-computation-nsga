@@ -33,6 +33,9 @@ class MainLoopImpl(
         logger.showMessage("p(inicial)::size:${p.size}",logLevel,1)
         logger.showMessage("q(inicial)::size:${q.size}",logLevel,1)
         for(generation in 1..numGenerations){ // executa o main loop pra cada geracao
+            if(generation == numGenerations){
+                val teste = 10
+            }
             logger.showMessage("Geração $generation",logLevel,3)
             r = ListUtils.concatenate(p,q)
             logger.showMessage("geração atual::size:${r.size}")

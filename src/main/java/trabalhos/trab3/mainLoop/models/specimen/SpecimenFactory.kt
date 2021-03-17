@@ -16,17 +16,9 @@ class SpecimenFactory(
         genesQuantity:Int,
         problem:Problem,
         label:String): Specimen {
-        /*
-        label="Problem-"+Math.random()
-        * */
-//        val genes = mutableListOf<Double>()
-//        for(el in 1..genesQuantity){
-//            val curr =max(inferiorLimit,Math.random())
-//            genes.add(min(curr,superiorLimit))
-//        }
+
         val genes:List<Double> = MutableList(genesQuantity) {
-            val curr =max(inferiorLimit,Math.random())
-            min(curr,superiorLimit)
+            surroundValue(Math.random())
         }
         return newSpecimen(genes,problem,label)
     }
@@ -38,7 +30,12 @@ class SpecimenFactory(
         }
         logger.showMessage("newSpecimen::genes::size:${genes.size}",1)
         logger.showMessage("newSpecimen::genes::$genes",2)
-        val genesToUse = genes.map { curr -> min(superiorLimit,max(inferiorLimit,curr)) }.toList()
-        return Specimen(genes,problem.calculate(genesToUse,label))
+        val genesToUse = genes.map { curr -> surroundValue(curr) }.toList()
+        return Specimen(genesToUse,problem.calculate(genesToUse,label))
+    }
+
+    private fun surroundValue(value:Double):Double{
+        val res = min(superiorLimit,max(inferiorLimit,value))
+        return res
     }
 }
