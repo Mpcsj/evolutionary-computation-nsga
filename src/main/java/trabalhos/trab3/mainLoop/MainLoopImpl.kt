@@ -27,15 +27,16 @@ class MainLoopImpl(
 
     fun execute(numGenerations:Int,problem: Problem,logLevel:Int =0):List<Specimen>{
         var r:List<Specimen> = ArrayList();
-        var splittedList = ListUtils.splitListInTwo(model.initialPop)
-        var p:List<Specimen> = splittedList[0]
-        var q:List<Specimen> = splittedList[1]
+        var p:List<Specimen> = model.initialPop
+        var splittedList = ListUtils.splitListInTwo(p)
+        var q:List<Specimen> = model.recombinationStrategy.recombineAll(
+            splittedList[0],
+            splittedList[1],
+            problem
+        )
         logger.showMessage("p(inicial)::size:${p.size}",logLevel,1)
         logger.showMessage("q(inicial)::size:${q.size}",logLevel,1)
         for(generation in 1..numGenerations){ // executa o main loop pra cada geracao
-            if(generation == numGenerations){
-                val teste = 10
-            }
             logger.showMessage("Geração $generation",logLevel,3)
             r = ListUtils.concatenate(p,q)
             logger.showMessage("geração atual::size:${r.size}")
@@ -71,14 +72,13 @@ class MainLoopImpl(
                     )
                 )
             }
+            p = p2
             splittedList = ListUtils.splitListInTwo(p2)
             val aux = model.recombinationStrategy.recombineAll(
                 splittedList[0],
                 splittedList[1],
                 problem)
-            splittedList = ListUtils.splitListInTwo(aux)
-            p = splittedList[0]
-            q = splittedList[1]
+            q = aux
             logger.showMessage("p(final)::size:${p.size}",logLevel,2)
             logger.showMessage("p(final)::${p}",logLevel,3)
             logger.showMessage("q(final)::size:${q.size}",logLevel,2)
