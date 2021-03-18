@@ -39,7 +39,7 @@ class MainLoopImpl(
         for(generation in 1..numGenerations){ // executa o main loop pra cada geracao
             logger.showMessage("Geração $generation",logLevel,3)
             r = ListUtils.concatenate(p,q)
-            logger.showMessage("geração atual::size:${r.size}")
+            logger.showMessage("geração atual::size:${r.size}",logLevel,3)
             val f = NSGAImpl().execute(
                 r.map
                 { it.solutions }.toList()
@@ -56,7 +56,7 @@ class MainLoopImpl(
             }
             logger.showMessage("Tamanho da lista p2 ${p2.size}",logLevel,2)
             if(p2.size < model.getN()){
-                logger.showMessage("Tam de p2 menor do que n:${model.getN()}")
+                logger.showMessage("Tam de p2 menor do que n:${model.getN()}",logLevel,2)
                 var currFrontier:List<CandidateSol> = f[idx]
                 currFrontier = CrowdDistImpl().execute(currFrontier).getOrderedList()
                 val faltantes =model.getN() - p2.size
@@ -83,7 +83,7 @@ class MainLoopImpl(
             logger.showMessage("p(final)::${p}",logLevel,3)
             logger.showMessage("q(final)::size:${q.size}",logLevel,2)
             logger.showMessage("q(final)::${q}",logLevel,3)
-            logger.showMessage("Filho 1 da geração atual: ${q[0]}",logLevel,1)
+            logger.showMessage("generation:$generation::Filho 1 da geração atual: ${q[0]}",logLevel,1)
         }
         return r
     }
