@@ -15,7 +15,11 @@ class Trab3:CefetJob {
         val numGenes=1;val numOutputs = 3;
         val initialPopSize = 20;val numGenerations = 45000
         // instanciando objetos necessarios
-        val specimenFactory = SpecimenFactory(-30.0,30.0,logLevel = 0)
+        val specimenFactory = SpecimenFactory(
+            -30.0,
+            30.0,
+            logLevel = 0
+        )
 //        val problem:Problem  = BasicProblem(numOutputs)
         val problem:Problem  = SchafferProblem()
         val initialPopulation:List<Specimen> = MutableList(initialPopSize) {
@@ -26,7 +30,7 @@ class Trab3:CefetJob {
         val result = MainLoopImpl(
             initialPopulation,
             specimenFactory,
-            BlxAlphaStrategy(specimenFactory,0)
+            BlxAlphaStrategy(specimenFactory,currLogLevel = 0)
         ).execute(numGenerations,problem,1)
         println("$TAG::final generation:$result")
     }

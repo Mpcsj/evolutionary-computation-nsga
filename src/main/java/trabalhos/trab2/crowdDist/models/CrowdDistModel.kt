@@ -19,8 +19,10 @@ class CrowdDistModel constructor(candidateSolList: List<CandidateSol>) {
         return candidateSolWrapperList.size
     }
 
-    fun getOrderedList():List<CandidateSol>{
-        return GenericUtils.sortMethodByD(candidateSolWrapperList).map { candidateSolWrapper -> candidateSolWrapper.candidateSol }
+    fun getOrderedList(reverseList:Boolean=false):List<CandidateSol>{
+        return GenericUtils.sortMethodByD(candidateSolWrapperList,reverseList).map {
+                candidateSolWrapper -> candidateSolWrapper.candidateSol
+        }
     }
 
     fun getMinByObjective(idxObjective:Int):Double{

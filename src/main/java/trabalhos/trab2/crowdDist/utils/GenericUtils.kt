@@ -19,10 +19,14 @@ class GenericUtils {
         }
         fun sortMethodByD(
             candidateSolWrapperList: List<CandidateSolWrapper>,
+            reverseList:Boolean=false
             ):List<CandidateSolWrapper>{
             var res:List<CandidateSolWrapper> = candidateSolWrapperList.map { el -> el }
             res = res.sortedBy {
                 it.d
+            }
+            if(reverseList){
+                res = res.reversed()
             }
             return res
         }

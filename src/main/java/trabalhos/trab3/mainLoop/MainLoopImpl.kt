@@ -58,7 +58,7 @@ class MainLoopImpl(
             if(p2.size < model.getN()){
                 logger.showMessage("Tam de p2 menor do que n:${model.getN()}",logLevel,2)
                 var currFrontier:List<CandidateSol> = f[idx]
-                currFrontier = CrowdDistImpl().execute(currFrontier).getOrderedList()
+                currFrontier = CrowdDistImpl().execute(currFrontier).getOrderedList(true)
                 val faltantes =model.getN() - p2.size
                 var toAddList:List<CandidateSol> = ArrayList()
                 for(el in 0 until faltantes){
