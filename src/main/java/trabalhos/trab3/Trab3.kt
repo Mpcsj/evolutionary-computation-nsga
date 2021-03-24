@@ -2,6 +2,8 @@ package trabalhos.trab3
 
 import trabalhos.CefetJob
 import trabalhos.trab3.mainLoop.MainLoopImpl
+import trabalhos.trab3.mainLoop.models.problem.Dtlz1JavaProblem
+import trabalhos.trab3.mainLoop.models.problem.Dtlz1Problem
 import trabalhos.trab3.mainLoop.models.problem.SchafferProblem
 import trabalhos.trab3.mainLoop.models.problem.Problem
 import trabalhos.trab3.mainLoop.models.specimen.Specimen
@@ -12,16 +14,17 @@ class Trab3:CefetJob {
     private val TAG = Trab3::class.java.canonicalName
     override fun run() {
         // declarando constantes do projeto
-        val numGenes=1;val numOutputs = 3;
+        val numGenes=3;val numOutputs = 3;
         val initialPopSize = 20;val numGenerations = 45000
         // instanciando objetos necessarios
         val specimenFactory = SpecimenFactory(
-            -30.0,
-            30.0,
+            0.0,
+            1.0,
             logLevel = 0
         )
-//        val problem:Problem  = BasicProblem(numOutputs)
-        val problem:Problem  = SchafferProblem()
+//        val problem:Problem  = Dtlz1JavaProblem(numOutputs)
+        val problem:Problem = Dtlz1Problem(numOutputs)
+//        val problem:Problem  = SchafferProblem()
         val initialPopulation:List<Specimen> = MutableList(initialPopSize) {
             specimenFactory.newSpecimen(numGenes,problem)
         }
@@ -30,7 +33,10 @@ class Trab3:CefetJob {
         val result = MainLoopImpl(
             initialPopulation,
             specimenFactory,
-            BlxAlphaStrategy(specimenFactory,currLogLevel = 0)
+            BlxAlphaStrategy(
+                specimenFactory,
+                true,
+                currLogLevel = 0)
         ).execute(numGenerations,problem,1)
         println("$TAG::final generation:$result")
     }

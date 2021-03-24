@@ -73,7 +73,7 @@ class BlxAlphaStrategy(
         assert(parentAList.size == parentBList.size)
         logger.showMessage("recombineAll:parentAList::size${parentAList.size}::parentBList:${parentBList.size}",2)
         var res =ArrayList<Specimen>()
-        shouldRecombineChildrenGenes = GenericUtils.getRandomBoolean()
+//        shouldRecombineChildrenGenes = GenericUtils.getRandomBoolean()
         for(idx in parentAList.indices){
             res = ListUtils.concatenate(
                 res,

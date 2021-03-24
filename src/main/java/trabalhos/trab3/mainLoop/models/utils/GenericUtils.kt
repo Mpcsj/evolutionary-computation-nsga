@@ -17,10 +17,15 @@ class GenericUtils {
             candidateSolList: List<CandidateSol>):List<Specimen>{
             val res:List<Specimen> = candidateSolList.map { candidateSol ->
                 var curr = specimens[0]
+                var achou = false
                 for (el in specimens.indices){
-                    if(specimens[el].solutions.label == candidateSol.label){
+                    if(specimens[el].solutions.label === candidateSol.label){
                         curr = specimens[el]
+                        achou = true
                     }
+                }
+                if(!achou){
+                    throw RuntimeException("Item não encontrado")
                 }
                 curr
             }.toList()

@@ -20,7 +20,8 @@ class CrowdDistModel constructor(candidateSolList: List<CandidateSol>) {
     }
 
     fun getOrderedList(reverseList:Boolean=false):List<CandidateSol>{
-        return GenericUtils.sortMethodByD(candidateSolWrapperList,reverseList).map {
+        val aux =GenericUtils.sortMethodByD(candidateSolWrapperList,reverseList)
+        return aux.map {
                 candidateSolWrapper -> candidateSolWrapper.candidateSol
         }
     }

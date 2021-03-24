@@ -51,7 +51,13 @@ class MainLoopImpl(
             logger.showMessage("lista de fronteiras:${f}",logLevel,3)
             while (idx < f.size && (p2.size+ f[idx].size)<=model.getN()){
                 logger.showMessage("Entrou no while",logLevel,3)
-                p2 = ListUtils.concatenate(p2,GenericUtils.findSpecimenByItsCandidateSol(r,f[idx]))
+                p2 = ListUtils.concatenate(
+                    p2,
+                    GenericUtils.findSpecimenByItsCandidateSol(
+                        r,
+                        f[idx]
+                    )
+                )
                 idx++
             }
             logger.showMessage("Tamanho da lista p2 ${p2.size}",logLevel,2)
@@ -60,9 +66,11 @@ class MainLoopImpl(
                 var currFrontier:List<CandidateSol> = f[idx]
                 currFrontier = CrowdDistImpl().execute(currFrontier).getOrderedList(true)
                 val faltantes =model.getN() - p2.size
-                var toAddList:List<CandidateSol> = ArrayList()
+                var toAddList= ArrayList<CandidateSol>()
+//                var toAddList:List<CandidateSol> = arrayListOf()
                 for(el in 0 until faltantes){
-                    toAddList = ListUtils.concatenate(toAddList, listOf(currFrontier[el]))
+                    toAddList.addAll(listOf(currFrontier[el]))
+//                    toAddList = ListUtils.concatenate(toAddList, listOf(currFrontier[el]))
                 }
                 p2 = ListUtils.concatenate(
                     p2,

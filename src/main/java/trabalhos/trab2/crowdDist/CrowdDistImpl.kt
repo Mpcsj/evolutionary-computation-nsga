@@ -16,7 +16,8 @@ class CrowdDistImpl {
                 val aux =
                     (t[idx + 1].candidateSol.points[objective] - t[idx - 1].candidateSol.points[objective]) /
                             (model.getMaxByObjective(objective) - model.getMinByObjective(objective))
-                t[idx].d += aux
+//                t[idx].d += aux
+                t[idx].d+= aux
             }
         }
         return model
